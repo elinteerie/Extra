@@ -286,3 +286,23 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+#Create Model Function to create a model from url
+def create_model(model_url, num_classes = 10):
+  '''
+  Takes a TensorFlow Hub Url and creates a Keras Sequential Model wwith it
+  
+  Args: 
+    model_url(str): A TensorFlow hub feature extraction url.
+    num_classes(int): Number of out neurons, number of target classes default 10
+  
+  Returns: uncompiled model as extractor 
+
+  '''
+  feature_extractor_layer = hub.KerasLayer(model_url, 
+                                           trainable = False,
+                                           name ='feature_extraction_layer',
+                                           input_shape = IMAGE_SHAPE +(3,))
+  model = tf.keras.Sequential([feature_extractor_layer,layers.Dense(num_classes, activation ='softmax', name ='output_layer')])
+
+  return model
