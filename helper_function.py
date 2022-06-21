@@ -306,3 +306,34 @@ def create_model(model_url, num_classes = 10):
   model = tf.keras.Sequential([feature_extractor_layer,layers.Dense(num_classes, activation ='softmax', name ='output_layer')])
 
   return model
+
+
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mping
+import os
+import random
+def view_argumented(target_clas, target_dir):
+
+  '''
+  target class should be the training data +.class_name and then the target_dir should be the directory of the training data
+
+  '''
+  target_class = random.choice(percent_train.class_names)
+  target_dir ='/content/10_food_classes_1_percent/train/' + target_class
+  random_image = random.choice(os.listdir(target_dir))
+  random_image_path = target_dir + '/' +random_image
+  #Read in 
+  img = mping.imread(random_image_path)
+  fin = plt.imshow(img)
+  plt.title(f'Orginal Target Image from class {target_class} ')
+  plt.axis(False)
+
+
+#Plot Argumented
+  augmented_img = data_augmentation(img, training =True)
+  plt.figure()
+  fin2 = plt.imshow(augmented_img/255.)
+  plt.title(f'AugumentedImage')
+  return fin, fin2
+
