@@ -337,3 +337,23 @@ def view_argumented(target_clas, target_dir):
   plt.title(f'AugumentedImage')
   return fin, fin2
 
+#Functionalise Model Checkpoint
+import datetime
+
+def create_model_checkpoint(file_name):
+  '''
+  Create Model Checkpoint Callback for any Model You are building
+
+  Args:
+  file_name: File_name will be the directory name which will have a timestamp to it.
+  '''
+
+  filepathdir = file_name + '/' +datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  filepath = filepathdir + '.ckpt'
+  checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(filepath =filepath,
+                                                         save_weight_only =True,
+                                                         save_best_only=False,
+                                                         save_freq ='epoch',
+                                                         verbose =1)
+  return checkpoint_callback
+
