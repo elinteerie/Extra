@@ -357,3 +357,14 @@ def create_model_checkpoint(file_name):
                                                          verbose =1)
   return checkpoint_callback
 
+#Functionlise data_argumentation
+def image_argumentation(inputw =inputs):
+  data_argu = tf.keras.Sequential([
+   layers.RandomFlip('horizontal'),
+   layers.RandomRotation(0.2),
+   layers.RandomHeight(0.2),
+   layers.RandomWidth(0.2),
+   layers.RandomZoom(0.2)], name='data_argumentation')
+  return data_argu(inputw)
+
+
