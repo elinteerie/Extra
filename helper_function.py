@@ -356,18 +356,3 @@ def create_model_checkpoint(file_name):
                                                          save_freq ='epoch',
                                                          verbose =1)
   return checkpoint_callback
-
-import tensorflow as tf
-from tensorflow.keras import layers
-from tensorflow.keras import Sequential
-#Functionlise data_argumentation
-def image_argumentation(inputw):
-  data_argu = tf.keras.Sequential([
-   layers.RandomFlip('horizontal'),
-   layers.RandomRotation(0.2),
-   layers.RandomHeight(0.2),
-   layers.RandomWidth(0.2),
-   layers.RandomZoom(0.2)], name='data_argumentation')
-  return data_argu(inputw)
-
-
