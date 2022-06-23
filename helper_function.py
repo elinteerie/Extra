@@ -357,6 +357,9 @@ def create_model_checkpoint(file_name):
                                                          verbose =1)
   return checkpoint_callback
 
+import tensorflow as tf
+from tensorflow.keras import layers
+from tensorflow.keras import Sequential
 #Functionlise data_argumentation
 def image_argumentation(inputw):
   data_argu = tf.keras.Sequential([
