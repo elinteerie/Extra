@@ -360,7 +360,7 @@ def create_model_checkpoint(file_name):
                                                          verbose =1)
   return checkpoint_callback
 
-
+import tensorflow as tf
 def load_and_prep_image(filename, img_shape=224, scale=True):
   """
   Reads in an image from filename, turns it into a tensor and reshapes into
