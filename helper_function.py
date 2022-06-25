@@ -383,3 +383,19 @@ def load_and_prep_image(filename, img_shape=224, scale=True):
     return img/255.
   else:
     return img
+
+  #Preprocess Images for Tensorflow ds
+  import tensorflow as tf
+  def preprocess_img(image, label, img_shape= 224):
+  '''
+  Converts image datatypes from 'unit8 too float32 and reshapes image to 
+  [img_shape, img_shape, color_channels]
+  
+  Args:
+  image: image iterable to pass
+  label: image label for tfds
+  img_shape: image shape
+  '''
+  image =tf.image.resize(image, [img_shape, img_shape])
+  return tf.cast(image, tf.float32), label
+
