@@ -399,3 +399,18 @@ def load_and_prep_image(filename, img_shape=224, scale=True):
     #image = image/255. #uncomment to scale
     return tf.cast(image, tf.float32), label
 
+import os 
+def get_lines(filename):
+  '''
+  Reads Filename (a text file ) and returns the lines of text as a list
+
+  Args:
+  filename: a string containin the target filepath
+  
+  Returns: A list of strings with one string per line from the target filename
+  '''
+  with open(filename, 'r') as f:
+    return f.readlines()
+
+
+
