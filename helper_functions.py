@@ -411,6 +411,12 @@ def get_lines(filename):
   '''
   with open(filename, 'r') as f:
     return f.readlines()
+  
+  #Splitting text into characters level
+
+def split_chars(text):
+  return ' '.join(list(text))
+
 
 
 
