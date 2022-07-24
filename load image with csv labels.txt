@@ -1,0 +1,21 @@
+import pandas as pd    
+train = pd.read_csv(path_to_train_csv_file)
+test = pd.read_csv(path_to_test_csv_file)
+
+
+train_folder = path_to_train_folder
+test_folder = path_to_test_folder
+
+
+
+train_data = train_gen.flow_from_dataframe(dataframe = train, 
+directory = train_folder, x_col = name of your column with image, 
+y_col = name of column of your labels, seed = 42,
+batch_size = size of your batch, shuffle = True, 
+class_mode="categorical",target_size = (height of image, width of image))
+
+test_data = test_gen.flow_from_dataframe(dataframe = test, 
+directory = test_folder, x_col = name of your column with image, 
+y_col = None,
+batch_size = size of your batch, shuffle = False, 
+class_mode=None,target_size = (height of image, width of image))
