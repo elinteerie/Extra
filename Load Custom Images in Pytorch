@@ -22,7 +22,7 @@ class Images(Dataset):
 
   def __getitems__(self, idx):
     each = img_dir[idx]
-    label = img_label = pathlib.PurePosixPath(str(img_dir[idx])).parent.stem
+    label = pathlib.PurePosixPath(str(img_dir[idx])).parent.stem
     image = read_image(each)
     return image, label
 
