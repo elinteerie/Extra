@@ -1,0 +1,28 @@
+### Load Custom Images in Pytorch
+import pathlib
+from pathlib import Path
+import torch
+from torchvision.io import read_image
+import torchvision
+from torch.utils.data import Dataset
+from torchvision import datasets
+
+#train_dir = ''
+#img_dir =  Path(train_dir)
+
+class Images(Dataset):
+
+  def __init__(self, img_dir):
+    self.img_dir = (list(img_dir.glob('**/*.jpg')))
+
+
+  def __len__(self):
+    return len(self.img_dir)
+
+
+  def __getitems__(self, idx):
+    each = img_dir[idx]
+    label = img_label = pathlib.PurePosixPath(str(img_dir[idx])).parent.stem
+    image = read_image(each)
+    return image, label
+
