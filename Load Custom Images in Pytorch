@@ -11,7 +11,12 @@ from torchvision.transforms import ToTensor
 #train_dir = ''
 #img_dir =  Path(train_dir)
 
-class Images(Dataset):
+
+from torchvision.transforms import ToTensor
+from torchvision import transforms as T
+
+
+class PizzaImages(Dataset):
 
   def __init__(self, img_dir):
     self.img_dir = (list(img_dir.glob('**/*.jpg')))
@@ -21,9 +26,12 @@ class Images(Dataset):
     return len(self.img_dir)
 
 
-  def __getitems__(self, idx):
-    each = self.img_dir[idx]
+  def __getitem__(self, idx):
+    each = str(self.img_dir[idx])
     label = pathlib.PurePosixPath(str(each)).parent.stem
     image = read_image(each)
+    image = T.Resize([224, 224])(image)
     return image, label
+
+
 
