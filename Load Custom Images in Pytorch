@@ -6,6 +6,7 @@ from torchvision.io import read_image
 import torchvision
 from torch.utils.data import Dataset
 from torchvision import datasets
+from torchvision.transforms import ToTensor
 
 #train_dir = ''
 #img_dir =  Path(train_dir)
@@ -21,8 +22,8 @@ class Images(Dataset):
 
 
   def __getitems__(self, idx):
-    each = img_dir[idx]
-    label = pathlib.PurePosixPath(str(img_dir[idx])).parent.stem
+    each = self.img_dir[idx]
+    label = pathlib.PurePosixPath(str(each)).parent.stem
     image = read_image(each)
     return image, label
 
